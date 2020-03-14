@@ -4,9 +4,9 @@
         <div class="input-search">
             <div class="input"><i class="iconfont">&#xe61c;</i>输入城市/景点/游玩主题</div>
         </div>
-        <div class="btn-city">
+        <router-link tag="div" to="/cities" class="btn-city">
             阿里阿里<i class="iconfont">&#xe72e;</i>
-        </div>
+        </router-link>
     </div>
 </template>
 
