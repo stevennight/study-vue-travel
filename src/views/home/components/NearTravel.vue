@@ -4,12 +4,12 @@
         周末去哪儿
       </div>
       <div class="list">
-        <div class="item">
+        <div class="item" v-for="item of list" :key="item.id">
           <div class="item-image">
-            <img src="http://img1.qunarzz.com/sight/source/1510/6e/1ea71e2f04e.jpg_r_640x214_aa6f091d.jpg" />
+            <img :src="item.imgUrl" />
           </div>
-          <div class="item-title">北京温泉排行</div>
-          <div class="item-desc">北京温泉排行</div>
+          <div class="item-title">{{item.title}}</div>
+          <div class="item-desc">{{item.desc}}</div>
         </div>
       </div>
     </div>
@@ -18,6 +18,9 @@
 <script>
 export default {
   name: 'NearTravel',
+  props: {
+    list: Array,
+  },
 };
 </script>
 

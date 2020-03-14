@@ -4,13 +4,13 @@
       热销推荐
     </div>
     <div class="items">
-      <div class="item">
+      <div class="item" v-for="item of list" :key="item.id">
         <div class="item-image">
-          <img src="http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_140x140_80f63803.jpg">
+          <img :src="item.imgUrl">
         </div>
         <div class="item-info">
-          <div class="info-title">title</div>
-          <div class="info-desc">info</div>
+          <div class="info-title">{{item.title}}</div>
+          <div class="info-desc">{{item.desc}}</div>
           <div class="info-btn">查看详情</div>
         </div>
       </div>
@@ -21,6 +21,9 @@
 <script>
 export default {
   name: 'recommand',
+  props: {
+    list: Array,
+  },
 };
 </script>
 
@@ -54,8 +57,14 @@ export default {
             text-align center
           .info-desc
             color #666
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
           .info-title
             font-size .40rem
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
     .title
       height .32rem
       line-height .32rem

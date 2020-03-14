@@ -1,62 +1,12 @@
 <template>
   <swiper :options="swiperOptions" class="icon-container" ref="mySwiper">
     <!-- slides -->
-    <swiper-slide class="swiper-slide">
-      <div class="icon-wrapper">
+    <swiper-slide class="swiper-slide" v-for="( page, index ) of iconPage" :key="index">
+      <div class="icon-wrapper" v-for="item of page" :key="item.id">
         <div class="icon">
-          <img src="http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png">
+          <img :src="item.imgUrl">
         </div>
-        <div class="title">test</div>
-      </div>
-      <div class="icon-wrapper">
-        <div class="icon">
-          <img src="http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png">
-        </div>
-        <div class="title">test</div>
-      </div>
-      <div class="icon-wrapper">
-        <div class="icon">
-          <img src="http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png">
-        </div>
-        <div class="title">test</div>
-      </div>
-      <div class="icon-wrapper">
-        <div class="icon">
-          <img src="http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png">
-        </div>
-        <div class="title">test</div>
-      </div>
-      <div class="icon-wrapper">
-        <div class="icon">
-          <img src="http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png">
-        </div>
-        <div class="title">test</div>
-      </div>
-      <div class="icon-wrapper">
-        <div class="icon">
-          <img src="http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png">
-        </div>
-        <div class="title">test</div>
-      </div>
-      <div class="icon-wrapper">
-        <div class="icon">
-          <img src="http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png">
-        </div>
-        <div class="title">test</div>
-      </div>
-      <div class="icon-wrapper">
-        <div class="icon">
-          <img src="http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png">
-        </div>
-        <div class="title">test</div>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <div class="icon-wrapper">
-        <div class="icon">
-          <img src="http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png">
-        </div>
-        <div class="title">test</div>
+        <div class="title">{{item.desc}}</div>
       </div>
     </swiper-slide>
   </swiper>
@@ -65,11 +15,25 @@
 <script>
 export default {
   name: 'Icon',
+  props: {
+    list: Array,
+  },
   data() {
     return {
       swiperOptions: {
       },
     };
+  },
+  computed: {
+    iconPage() {
+      const pages = [];
+      this.list.forEach((item, index) => {
+        const page = parseInt(index / 8, 10);
+        if (!pages[page]) pages[page] = [];
+        pages[page].push(item);
+      });
+      return pages;
+    },
   },
 };
 </script>

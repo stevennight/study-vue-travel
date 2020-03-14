@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import HomeComponent from '@/views/home/Home.vue';
+import NotFoundComponent from '@/common/view/error/404.vue';
 
 Vue.use(VueRouter);
 
@@ -11,9 +12,15 @@ const routes = [
     name: 'home',
     component: HomeComponent,
   },
+  {
+    path: '*',
+    name: '404',
+    component: NotFoundComponent,
+  },
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
 });
 

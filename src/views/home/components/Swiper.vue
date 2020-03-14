@@ -2,11 +2,8 @@
     <div class="swiper-container">
         <swiper :options="swiperOptions" class="swiper" ref="mySwiper">
             <!-- slides -->
-            <swiper-slide class="swiper-slide">
-                <img src="http://img1.qunarzz.com/piao/fusion/1801/1a/94428c6dea109402.jpg_640x200_2cf590d8.jpg">
-            </swiper-slide>
-            <swiper-slide>
-                <img src="http://img1.qunarzz.com/piao/fusion/1801/1a/94428c6dea109402.jpg_640x200_2cf590d8.jpg">
+            <swiper-slide class="swiper-slide" v-for="item of list" :key="item.id">
+                <img :src="item.imgUrl">
             </swiper-slide>
             <!-- Optional controls -->
             <div class="swiper-pagination"  slot="pagination"></div>
@@ -17,9 +14,13 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  props: {
+    list: Array,
+  },
   data() {
     return {
       swiperOptions: {
+        autoplay: true,
         pagination: {
           el: '.swiper-pagination',
           type: 'bullets',
