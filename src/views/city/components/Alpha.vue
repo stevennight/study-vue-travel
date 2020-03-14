@@ -1,13 +1,15 @@
 <template>
     <div class="alpha-container">
-      <div class="alpha">A</div>
-      <div class="alpha">B</div>
+      <div class="alpha" v-for="(item, key) of cities" :key="key">{{key}}</div>
     </div>
 </template>
 
 <script>
 export default {
   name: 'Alpha',
+  props: {
+    cities: Object,
+  },
 };
 </script>
 
@@ -24,4 +26,5 @@ export default {
     display flex
     flex-direction column
     justify-content center
+    color: $mainColor
 </style>

@@ -1,9 +1,9 @@
 <template>
     <div class="city-container">
       <head-component></head-component>
-      <search-component></search-component>
+      <search-component :cities="cities"></search-component>
       <list-component :hotCities="hotCities" :cities="cities"></list-component>
-      <alpha-component></alpha-component>
+      <alpha-component :cities="cities"></alpha-component>
     </div>
 </template>
 
