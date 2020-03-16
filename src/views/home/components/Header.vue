@@ -5,14 +5,19 @@
             <div class="input"><i class="iconfont">&#xe61c;</i>输入城市/景点/游玩主题</div>
         </div>
         <router-link tag="div" to="/cities" class="btn-city">
-            阿里阿里<i class="iconfont">&#xe72e;</i>
+          {{currentCity.name}}<i class="iconfont">&#xe72e;</i>
         </router-link>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Header',
+  computed: {
+    ...mapState(['currentCity']),
+  },
 };
 </script>
 

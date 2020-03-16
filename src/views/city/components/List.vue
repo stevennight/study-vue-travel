@@ -1,25 +1,33 @@
 <template>
-    <div class="list-container">
+    <div class="list-container" ref="list-container">
       <div class="current-city-container">
         <div class="title">当前城市</div>
         <div class="items">
           <div class="item">
-            <div class="item-label">上海</div>
+            <div class="item-label">{{currentCity.name}}</div>
           </div>
         </div>
       </div>
       <div class="hot-city-container">
         <div class="title">热门城市</div>
         <div class="items">
-          <div class="item" v-for="item of hotCities" :key="item.id">
+          <div class="item" v-for="item of hotCities" :key="item.id"
+               @click="changeCurrentCity(item)"
+          >
             <div class="item-label">{{item.name}}</div>
           </div>
         </div>
       </div>
-      <div class="alpha-city-container" v-for="(alphaCities, key) of cities" :key="key">
+      <div class="alpha-city-container"
+           v-for="(alphaCities, key) of cities"
+           :key="key"
+           :ref="'alpha-'+key"
+      >
         <div class="title">{{key}}</div>
         <div class="items">
-          <div class="item" v-for="item of alphaCities" :key="item.id">
+          <div class="item" v-for="item of alphaCities" :key="item.id"
+               @click="changeCurrentCity(item)"
+          >
             <div class="item-label">{{item.name}}</div>
           </div>
         </div>
@@ -28,11 +36,33 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
   name: 'List',
   props: {
     hotCities: Array,
     cities: Object,
+  },
+  computed: {
+    ...mapState({
+      currentCity: 'currentCity',
+      selectedAlpha: (state) => state.city.selectedAlpha,
+    }),
+  },
+  methods: {
+    changeCurrentCity(city) {
+      this.changeCurrentCityMutation(city);
+      this.$router.push({ name: 'home' });
+    },
+    ...mapMutations({
+      changeCurrentCityMutation: 'changeCurrentCity',
+    }),
+  },
+  watch: {
+    selectedAlpha(newVal) {
+      this.$refs['list-container'].scrollTo(0, this.$refs[`alpha-${newVal}`][0].offsetTop);
+    },
   },
 };
 </script>
