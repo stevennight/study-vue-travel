@@ -1,13 +1,18 @@
 <template>
     <div class="head-container">
       <div class="title">城市选择</div>
-      <router-link tag="div" to="/" class="btn-back"><i class="iconfont">&#xe640;</i></router-link>
+      <div @click="routerBack" class="btn-back"><i class="iconfont">&#xe640;</i></div>
     </div>
 </template>
 
 <script>
 export default {
   name: 'Head',
+  methods: {
+    routerBack() {
+      this.$router.back();
+    },
+  },
 };
 </script>
 

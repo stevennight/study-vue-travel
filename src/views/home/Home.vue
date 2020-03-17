@@ -25,6 +25,7 @@ export default {
       recommendList: [],
       swiperList: [],
       weekendList: [],
+      apiCityid: 0,
     };
   },
   components: {
@@ -34,10 +35,12 @@ export default {
     RecommandComponent,
     NearTravelComponent,
   },
-  mounted() {
+  activated() {
+    const stateCityId = this.$store.state.currentCity.id;
+    if (stateCityId === this.apiCityid) return;
     axios.get('/api/index', {
       params: {
-        id: this.$store.state.currentCity.id,
+        id: stateCityId,
       },
     })
       .then((res) => {
@@ -47,6 +50,7 @@ export default {
           this.recommendList = data.recommendList;
           this.swiperList = data.swiperList;
           this.weekendList = data.weekendList;
+          this.apiCityid = stateCityId;
         }
       })
       .catch(() => {
