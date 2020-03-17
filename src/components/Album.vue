@@ -1,11 +1,8 @@
 <template>
     <div class="album-container" v-show="display">
       <swiper :options="swiperOptions" class="swiper">
-        <swiper-slide class="swiper-slide">
-          <img src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_800x800_70debc93.jpg">
-        </swiper-slide>
-        <swiper-slide class="swiper-slide">
-          <img src="/test.jpg">
+        <swiper-slide class="swiper-slide" v-for="(image, index) of images" :key="index">
+          <img :src="image">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -20,6 +17,7 @@ export default {
       type: Boolean,
       default: true,
     },
+    images: Array,
   },
   data() {
     return {

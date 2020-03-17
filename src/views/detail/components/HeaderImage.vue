@@ -2,14 +2,15 @@
     <div class="header-image-container">
       <div @click="changeAlbumDisplay(true)">
         <div class="image-swipper">
-          <img src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_600x330_bf9c4904.jpg">
+          <img :src="bannerImg">
         </div>
         <div class="info">
-          <div class="info-title">大连圣亚海洋世界(AAAA景区)</div>
-          <div class="info-number">2</div>
+          <div class="info-title">{{sightName}}</div>
+          <div class="info-number">{{gallaryImgs.length}}</div>
         </div>
       </div>
       <album-component
+        :images="gallaryImgs"
         :display="albumDisplay"
         @click.native="changeAlbumDisplay(false)"
       ></album-component>
@@ -21,6 +22,11 @@ import AlbumComponent from '@/components/Album.vue';
 
 export default {
   name: 'HeaderImage',
+  props: {
+    sightName: String,
+    bannerImg: String,
+    gallaryImgs: Array,
+  },
   data() {
     return {
       albumDisplay: false,

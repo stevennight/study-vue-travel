@@ -2,7 +2,7 @@
     <div class="head-container">
       <div class="back-bubble" @click="clickBackButton"><i class="iconfont">&#xe640;</i></div>
       <div class="head-bar" v-show="headBarShow" :style="{opacity: headBarOpacity}">
-        <div class="head-title">大连圣亚海洋世界(AAAA景区)</div>
+        <div class="head-title">{{sightName}}</div>
         <div class="head-back" @click="clickBackButton"><i class="iconfont">&#xe640;</i></div>
       </div>
     </div>
@@ -11,6 +11,9 @@
 <script>
 export default {
   name: 'Head',
+  props: {
+    sightName: String,
+  },
   data() {
     return {
       headBarShow: false,
