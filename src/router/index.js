@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import HomeComponent from '@/views/home/Home.vue';
 import CityComponent from '@/views/city/City.vue';
+import DetailComponent from '@/views/detail/Detail.vue';
 import NotFoundComponent from '@/common/view/error/404.vue';
 
 Vue.use(VueRouter);
@@ -17,6 +18,11 @@ const routes = [
     path: '/cities',
     name: 'cities',
     component: CityComponent,
+  },
+  {
+    path: '/detail/:id',
+    name: 'detail',
+    component: DetailComponent,
   },
   {
     path: '*',

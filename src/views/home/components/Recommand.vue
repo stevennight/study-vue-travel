@@ -11,7 +11,13 @@
         <div class="item-info">
           <div class="info-title">{{item.title}}</div>
           <div class="info-desc">{{item.desc}}</div>
-          <div class="info-btn">查看详情</div>
+          <router-link
+            tag="div"
+            :to="{name: 'detail', params: {id: item.id}}"
+            class="info-btn"
+          >
+            查看详情
+          </router-link>
         </div>
       </div>
     </div>
