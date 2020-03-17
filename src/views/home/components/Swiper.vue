@@ -20,7 +20,9 @@ export default {
   data() {
     return {
       swiperOptions: {
-        autoplay: true,
+        autoplay: {
+          disableOnInteraction: false,
+        },
         pagination: {
           el: '.swiper-pagination',
           type: 'bullets',
