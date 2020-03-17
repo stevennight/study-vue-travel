@@ -35,7 +35,11 @@ export default {
     NearTravelComponent,
   },
   mounted() {
-    axios.get('/api/index')
+    axios.get('/api/index', {
+      params: {
+        id: this.$store.state.currentCity.id,
+      },
+    })
       .then((res) => {
         if (res.status === 200 && res.data && res.data.ret) {
           const { data } = res.data;
