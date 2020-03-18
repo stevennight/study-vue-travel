@@ -36,7 +36,7 @@ export default {
       Object.keys(this.cities).forEach((alpha) => {
         const list = this.cities[alpha];
         list.forEach((city) => {
-          if (city.name.indexOf(inputKey) > -1 || city.spell.indexOf(inputKey) > -1) {
+          if (city.name.indexOf(inputKey) > -1 || city.spell.indexOf(inputKey.toLowerCase()) > -1) {
             result.push(city);
           }
         });
