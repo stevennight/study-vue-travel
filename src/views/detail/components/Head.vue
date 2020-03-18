@@ -25,7 +25,13 @@ export default {
       this.$router.back();
     },
     windowScroll() {
-      const { scrollTop } = document.documentElement;
+      const scrollTop = Math.max(
+        window.pageYOffset,
+        document.documentElement.scrollTop,
+        document.body.scrollTop,
+        document.scrollingElement.scrollTop,
+      );
+      console.log(scrollTop);
       // 140， header-bar完全显示。
       let opacity = scrollTop / 140;
       opacity = Math.max(opacity, 0);
@@ -34,11 +40,13 @@ export default {
       this.headBarOpacity = opacity;
     },
   },
-  mounted() {
+  activated() {
     window.addEventListener('scroll', this.windowScroll);
+    console.log('添加scroll事件监听');
   },
-  destroyed() {
+  deactivated() {
     window.removeEventListener('scroll', this.windowScroll);
+    console.log('移除scroll事件监听');
   },
 };
 </script>
