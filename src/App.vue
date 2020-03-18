@@ -1,5 +1,5 @@
 <template>
-  <div id="app" @touchmove.prevent>
+  <div id="app">
     <transition :name="transitionName">
       <keep-alive>
         <router-view class="child-view"/>
