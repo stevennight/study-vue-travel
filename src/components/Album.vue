@@ -1,5 +1,5 @@
 <template>
-    <div class="album-container" v-show="display">
+    <div class="album-container" v-show="display" @touchmove.prevent>
       <swiper :options="swiperOptions" class="swiper">
         <swiper-slide class="swiper-slide" v-for="(image, index) of images" :key="index">
           <img :src="image">
